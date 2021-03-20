@@ -1,184 +1,110 @@
 import 'package:flutter/material.dart';
-
-import 'dart:async';
-import 'dart:io';
-
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import './ChatMessageListItem.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:image_picker/image_picker.dart';
-
-final googleSignIn = new GoogleSignIn();
-final analytics = new FirebaseAnalytics();
-final auth = FirebaseAuth.instance;
-var currentUserEmail;
-var _scaffoldContext;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 
 class Chatarea extends StatefulWidget {
   @override
-  ChatScreenState createState() {
-    return new ChatScreenState();
-  }
+  _ChatareaState createState() => _ChatareaState();
 }
 
-class ChatScreenState extends State<Chatarea> {
-  final TextEditingController _textEditingController =
-  new TextEditingController();
-  bool _isComposingMessage = false;
-  final reference = FirebaseDatabase.instance.reference().child('messages');
-
+class _ChatareaState extends State<Chatarea> {
+  final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Flutter Chat App"),
-          elevation:
-          Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
-          actions: <Widget>[
-          ],
-        ),
-        body: new Container(
-          child: new Column(
-            children: <Widget>[
-              new Flexible(
-                child:FirebaseAnimatedList(
-                  query: reference,
-                  sort: (DataSnapshot a, DataSnapshot b) =>
-                      b.key.compareTo(a.key),
-                  padding: EdgeInsets.all(8.0),
-                  reverse: true,
-                  itemBuilder: (BuildContext context, DataSnapshot messageSnapshot,
-                      Animation<double> animation, _) {
-                    return new ChatMessageListItem(messageSnapshot: messageSnapshot, animation: animation);
-                  },
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Annonymus Chatroom"),
+      ),
+      body: Stack(
+        children: <Widget>[
+          StreamBuilder<QuerySnapshot>(
+              // <2> Pass `Stream<QuerySnapshot>` to stream
+              stream: Firestore.instance
+                  .collection('chat')
+                  .orderBy('timestamp', descending: false)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  // <3> Retrieve `List<DocumentSnapshot>` from snapshot
+                  final List<DocumentSnapshot> documents =
+                      snapshot.data.documents;
+                  return ListView(
+                      children: documents
+                          .map(
+                            (doc) => Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context).primaryColor,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(35))),
+                                width: Get.width * 0.9,
+                                height: Get.height * 0.05,
+                                child: Center(
+                                  child: Text(
+                                    doc['message'],
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: Get.height * 0.020),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList());
+                } else {
+                  return Text("Its Error!");
+                }
+              }),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Container(
+              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+              height: 60,
+              width: double.infinity,
+              color: Colors.white,
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: myController,
+                      decoration: InputDecoration(
+                          hintText: "Write message...",
+                          hintStyle: TextStyle(color: Colors.black54),
+                          border: InputBorder.none),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  FloatingActionButton(
+                    onPressed: () {
+                      final _firestore = Firestore.instance;
+                      _firestore.collection('chat').add({
+                        'message': myController.text,
+                        'timestamp':
+                            DateTime.now().millisecondsSinceEpoch.toString(),
+                      });
+                      myController.clear();
+                    },
+                    child: Icon(
+                      Icons.send,
+                      color: Colors.white,
+                      size: 25,
+                    ),
+                    backgroundColor: Theme.of(context).primaryColor,
+                    elevation: 0,
+                  ),
+                ],
               ),
-              new Divider(height: 1.0),
-              new Container(
-                decoration:
-                new BoxDecoration(color: Theme.of(context).cardColor),
-                child: _buildTextComposer(),
-              ),
-              new Builder(builder: (BuildContext context) {
-                _scaffoldContext = context;
-                return new Container(width: 0.0, height: 0.0);
-              })
-            ],
+            ),
           ),
-          decoration: Theme.of(context).platform == TargetPlatform.iOS
-              ? new BoxDecoration(
-              border: new Border(
-                  top: new BorderSide(
-                    color: Colors.grey[200],
-                  )))
-              : null,
-        ));
-  }
-
-  CupertinoButton getIOSSendButton() {
-    return new CupertinoButton(
-      child: new Text("Send"),
-      onPressed: _isComposingMessage
-          ? () => _textMessageSubmitted(_textEditingController.text)
-          : null,
+        ],
+      ),
     );
-  }
-
-  IconButton getDefaultSendButton() {
-    return new IconButton(
-      icon: new Icon(Icons.send),
-      onPressed: _isComposingMessage
-          ? () => _textMessageSubmitted(_textEditingController.text)
-          : null,
-    );
-  }
-
-  Widget _buildTextComposer() {
-    return new IconTheme(
-        data: new IconThemeData(
-          color: _isComposingMessage
-              ? Theme.of(context).accentColor
-              : Theme.of(context).disabledColor,
-        ),
-        child: new Container(
-          margin: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: new Row(
-            children: <Widget>[
-
-              new Flexible(
-                child: new TextField(
-                  controller: _textEditingController,
-                  onChanged: (String messageText) {
-                    setState(() {
-                      _isComposingMessage = messageText.length > 0;
-                    });
-                  },
-                  onSubmitted: _textMessageSubmitted,
-                  decoration:
-                  new InputDecoration.collapsed(hintText: "Send a message"),
-                ),
-              ),
-              new Container(
-                margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: Theme.of(context).platform == TargetPlatform.iOS
-                    ? getIOSSendButton()
-                    : getDefaultSendButton(),
-              ),
-            ],
-          ),
-        ));
-  }
-
-  Future<Null> _textMessageSubmitted(String text) async {
-    _textEditingController.clear();
-
-    setState(() {
-      _isComposingMessage = false;
-    });
-
-    // await _ensureLoggedIn();
-    _sendMessage(messageText: text, imageUrl: null);
-  }
-
-  void _sendMessage({String messageText, String imageUrl}) {
-    reference.push().set({
-      'text': messageText,
-    });
-
-    analytics.logEvent(name: 'send_message');
-  }
-
-  // Future<Null> _ensureLoggedIn() async {
-  //   GoogleSignInAccount signedInUser = googleSignIn.currentUser;
-  //   if (signedInUser == null)
-  //     signedInUser = await googleSignIn.signInSilently();
-  //   if (signedInUser == null) {
-  //     await googleSignIn.signIn();
-  //     analytics.logLogin();
-  //   }
-  //
-  //   currentUserEmail = googleSignIn.currentUser.email;
-  //
-  //   if (await auth.currentUser() == null) {
-  //
-  //     GoogleSignInAuthentication credentials =
-  //     await googleSignIn.currentUser.authentication;
-  //     await auth.signInWithCredential(
-  //         idToken: credentials.idToken, accessToken: credentials.accessToken);
-  //   }
-  // }
-
-  Future _signOut() async {
-    await auth.signOut();
-    googleSignIn.signOut();
-    Scaffold
-        .of(_scaffoldContext)
-        .showSnackBar(new SnackBar(content: new Text('User logged out')));
   }
 }
