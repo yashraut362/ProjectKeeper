@@ -17,7 +17,7 @@ class _MapsState extends State<Maps> {
     _location.onLocationChanged.listen((l) {
       myController.animateCamera(
         CameraUpdate.newCameraPosition(
-          CameraPosition(target: LatLng(l.latitude, l.longitude),zoom: 15),
+          CameraPosition(target: LatLng(l.latitude, l.longitude), zoom: 15),
         ),
       );
     });
@@ -35,7 +35,8 @@ class _MapsState extends State<Maps> {
           GoogleMap(
             onMapCreated: _onMapCreated,
             myLocationEnabled: true,
-            initialCameraPosition: CameraPosition(target: _initialcameraposition, zoom: 10),
+            initialCameraPosition:
+                CameraPosition(target: _initialcameraposition, zoom: 12),
           ),
         ],
       ),

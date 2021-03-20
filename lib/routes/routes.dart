@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:projectskeeper/views/bottomnavbar.dart';
-import 'package:projectskeeper/views/homepage.dart';
-import 'package:projectskeeper/views/learn.dart';
-import 'package:projectskeeper/views/projectdetails.dart';
-import 'package:projectskeeper/views/splashscreen.dart';
+import '../views/utility/bottomnavbar.dart';
+import '../views/utility/homepage.dart';
+import '../views/utility/splashscreen.dart';
+import '../views/learn/learn.dart';
+import '../views/projects/projectdetails.dart';
 
 class Routers {
   static final route = [

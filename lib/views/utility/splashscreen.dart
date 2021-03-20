@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectskeeper/views/bottomnavbar.dart';
+import '../utility/bottomnavbar.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 class Splashscreen extends StatelessWidget {
