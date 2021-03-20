@@ -49,6 +49,9 @@ class _HomepageState extends State<Homepage> {
       // ),
       body: Stack(
         children: <Widget>[
+          SizedBox(
+            height: Get.height * 0.1,
+          ),
           Container(
             height: size.height * .3,
             decoration: BoxDecoration(
