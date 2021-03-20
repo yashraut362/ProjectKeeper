@@ -58,7 +58,7 @@ class _SearchState extends State<Search> {
           });
         },
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         actions: [
           GetBuilder<DataController>(
@@ -80,11 +80,12 @@ class _SearchState extends State<Search> {
         title: TextField(
           style: TextStyle(color: Colors.white),
           decoration: InputDecoration(
-              hintText: 'Search here',
-              hintStyle: TextStyle(color: Colors.white)),
+            hintText: 'Search here',
+            hintStyle: TextStyle(color: Colors.white),
+          ),
           controller: searchController,
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: isExecuted
           ? searchedData()

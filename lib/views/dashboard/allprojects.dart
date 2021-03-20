@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:projectskeeper/views/projects/projectdetails.dart';
+import './search.dart';
 
 class Allprojects extends StatelessWidget {
   @override
@@ -13,15 +14,7 @@ class Allprojects extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(height: 30),
-          Container(
-            color: Theme.of(context).primaryColor,
-            height: Get.height * 0.20,
-            width: Get.width * 1,
-            child: Center(
-              child: Text('Hello'),
-            ),
-          ),
+          SizedBox(height: 10),
           Flexible(
             child: StreamBuilder<QuerySnapshot>(
                 // <2> Pass `Stream<QuerySnapshot>` to stream
@@ -58,6 +51,12 @@ class Allprojects extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.search),
+          backgroundColor: Theme.of(context).primaryColor,
+          onPressed: () {
+            Get.to(Search());
+          }),
     );
   }
 }

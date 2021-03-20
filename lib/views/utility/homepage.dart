@@ -179,7 +179,7 @@ class _HomepageState extends State<Homepage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.to(Faq());
+                            Get.to(Search());
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(
