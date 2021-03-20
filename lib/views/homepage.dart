@@ -12,7 +12,7 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(),
       body: Container(
         child: Center(
-          child: Text('Splashscreen'),
+          child: Text('Homepage'),
         ),
       ),
     );

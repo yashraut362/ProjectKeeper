@@ -8,6 +8,13 @@ class Maps extends StatefulWidget {
 class _MapsState extends State<Maps> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+      body: Container(
+        child: Center(
+          child: Text('Maps'),
+        ),
+      ),
+    );
   }
 }

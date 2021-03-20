@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.rightToLeft,
       getPages: Routers.route,
-      initialRoute: '/splashscreen',
+      initialRoute: '/navbar',
       theme: ThemeData(
         primaryColor: Color(0xffFFE30A),
         visualDensity: VisualDensity.adaptivePlatformDensity,

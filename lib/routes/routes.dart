@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:projectskeeper/views/bottomnavbar.dart';
 import 'package:projectskeeper/views/homepage.dart';
 import 'package:projectskeeper/views/learn.dart';
 import 'package:projectskeeper/views/projectdetails.dart';
@@ -21,6 +22,10 @@ class Routers {
     GetPage(
       name: '/learn',
       page: () => Learn(),
+    ),
+    GetPage(
+      name: '/navbar',
+      page: () => BottomNavBar(),
     ),
   ];
 }
