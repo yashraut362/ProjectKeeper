@@ -23,6 +23,7 @@ class _FormsPageState extends State<FormsPage> {
     File image;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text("Submit Project"),
@@ -34,6 +35,37 @@ class _FormsPageState extends State<FormsPage> {
                 key: _formKey,
                 child: Column(
                   children: [
+                    Image.asset('assets/splashscreen/form.png'),
+
+                    RaisedButton.icon(
+                      color: Theme.of(context).primaryColor,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0),
+                      ),
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.image,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        'Upload Image',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    DropDown(
+                        items: [
+                          "Mobile Application Development",
+                          "Web Development",
+                          "Artificial Intelligence",
+                          "Machine Learning",
+                          "Internet Of Things",
+                          "Blockchain",
+                          "OS development",
+                          "Cloud Systems",
+                          "Other"
+                        ],
+                        hint: Text('Domain of Project'),
+                        onChanged: (value) => {domain = value}),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                       child: TextFormField(
@@ -63,16 +95,13 @@ class _FormsPageState extends State<FormsPage> {
                           },
                           onChanged: (value) => {name = value}),
                     ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                       child: TextFormField(
                           focusNode: _detailsfn,
                           //   autofocus: true,
                           textCapitalization: TextCapitalization.words,
-                          maxLines: 10,
+                          maxLines: 5,
                           keyboardType: TextInputType.multiline,
                           decoration: InputDecoration(
                             labelText: "Details of Project",
@@ -96,9 +125,7 @@ class _FormsPageState extends State<FormsPage> {
                           },
                           onChanged: (value) => {details = value}),
                     ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
+
                     Padding(
                       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                       child: TextFormField(
@@ -128,28 +155,7 @@ class _FormsPageState extends State<FormsPage> {
                           },
                           onChanged: (value) => {}),
                     ),
-                    SizedBox(height: 20),
-                    RaisedButton.icon(
-                      color: Theme.of(context).primaryColor,
-                      onPressed: () {},
-                      icon: Icon(Icons.image),
-                      label: Text('Upload Image'),
-                    ),
-                    SizedBox(height: 20.0),
-                    DropDown(
-                        items: [
-                          "Mobile Application Development",
-                          "Web Development",
-                          "Artificial Intelligence",
-                          "Machine Learning",
-                          "Internet Of Things",
-                          "Blockchain",
-                          "OS development",
-                          "Cloud Systems",
-                          "Other"
-                        ],
-                        hint: Text('Domain of Project'),
-                        onChanged: (value) => {domain = value}),
+
                     // DropDown(items: [
                     //   'Village Council (Gram Panchayat)',
                     //   'City Council (Nagarparishad)',
@@ -166,6 +172,9 @@ class _FormsPageState extends State<FormsPage> {
                     //   height: 20.0,
                     // ),
                     RaisedButton(
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0),
+                      ),
                       color: Theme.of(context).primaryColor,
                       onPressed: () async {
                         print(name);
@@ -177,9 +186,6 @@ class _FormsPageState extends State<FormsPage> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                    SizedBox(
-                      height: Get.height * 0.05,
-                    )
                   ],
                 )),
           ],
