@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1052513090783",
+    "project_id": "project-keeper-d42fc",
+    "storage_bucket": "project-keeper-d42fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052513090783:android:3aff6351b8592b980c3d6a",
+        "android_client_info": {
+          "package_name": "com.recursion.projectskeeper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052513090783-01d1eqi9603e3enc8u3j8kf012p4tul9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo1iajHxfsFcX8feTxdK8DbLA8jJC0E5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052513090783-01d1eqi9603e3enc8u3j8kf012p4tul9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
