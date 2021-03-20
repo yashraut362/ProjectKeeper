@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../projects/forms.dart';
 import '../projects/projectdetails.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import '../dashboard/Faq.dart';
+import '../dashboard/addproject.dart';
+import '../dashboard/allprojects.dart';
+import '../dashboard/chatarea.dart';
+import '../dashboard/mentor.dart';
+import '../dashboard/requestCourse.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -19,29 +24,29 @@ class _HomepageState extends State<Homepage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  Get.to(ProjectDetails());
-                },
-                child: Icon(
-                  Icons.search,
-                  size: 26.0,
-                ),
-              )),
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  Get.to(FormsPage());
-                },
-                child: Icon(Icons.more_vert),
-              )),
-        ],
-      ),
+      // appBar: AppBar(
+      //   actions: <Widget>[
+      //     Padding(
+      //         padding: EdgeInsets.only(right: 20.0),
+      //         child: GestureDetector(
+      //           onTap: () {
+      //             Get.to(ProjectDetails());
+      //           },
+      //           child: Icon(
+      //             Icons.search,
+      //             size: 26.0,
+      //           ),
+      //         )),
+      //     Padding(
+      //         padding: EdgeInsets.only(right: 20.0),
+      //         child: GestureDetector(
+      //           onTap: () {
+      //             Get.to(FormsPage());
+      //           },
+      //           child: Icon(Icons.more_vert),
+      //         )),
+      //   ],
+      // ),
       body: Stack(
         children: <Widget>[
           Container(
@@ -63,14 +68,6 @@ class _HomepageState extends State<Homepage> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 32,
-                          backgroundImage: NetworkImage(
-                              'https://i.pinimg.com/originals/78/07/03/78070395106fcd1c3e66e3b3810568bb.jpg'),
-                        ),
-                        SizedBox(
-                          width: 16,
-                        ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,104 +98,134 @@ class _HomepageState extends State<Homepage> {
                       primary: false,
                       crossAxisCount: 2,
                       children: <Widget>[
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              SvgPicture.network(
-                                'https://image.flaticon.com/icons/svg/1904/1904425.svg',
-                                height: 128,
-                              ),
-                              Text(
-                                'Add New Project',
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(Addproject());
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            elevation: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Image.asset(
+                                  'assets/dashboard/Add_project.jpeg',
+                                  height: 128,
+                                ),
+                                Text(
+                                  'Add New Project',
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              SvgPicture.network(
-                                'https://image.flaticon.com/icons/svg/1904/1904565.svg',
-                                height: 128,
-                              ),
-                              Text('List of Projects')
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(Allprojects());
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            elevation: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Image.asset(
+                                  'assets/dashboard/See_all_project.jpeg',
+                                  height: 128,
+                                ),
+                                Text('List of Projects')
+                              ],
+                            ),
                           ),
                         ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              SvgPicture.network(
-                                'https://image.flaticon.com/icons/svg/1904/1904527.svg',
-                                height: 128,
-                              ),
-                              Text(
-                                'Become a mentor',
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(Mentors());
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            elevation: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Image.asset(
+                                  'assets/dashboard/Become_mentor.jpeg',
+                                  height: 128,
+                                ),
+                                Text(
+                                  'Become a mentor',
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              SvgPicture.network(
-                                'https://image.flaticon.com/icons/svg/1904/1904437.svg',
-                                height: 128,
-                              ),
-                              Text(
-                                'Request For Courses',
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(RequestCourse());
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            elevation: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Image.asset(
+                                  'assets/dashboard/Request_course.jpeg',
+                                  height: 128,
+                                ),
+                                Text(
+                                  'Request For Courses',
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              SvgPicture.network(
-                                'https://image.flaticon.com/icons/svg/1904/1904235.svg',
-                                height: 128,
-                              ),
-                              Text(
-                                'Chat Area',
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(Chatarea());
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            elevation: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Image.asset(
+                                  'assets/dashboard/Chat_area.jpeg',
+                                  height: 128,
+                                ),
+                                Text(
+                                  'Chat Area',
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          elevation: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              SvgPicture.network(
-                                'https://image.flaticon.com/icons/svg/1904/1904221.svg',
-                                height: 128,
-                              ),
-                              Text(
-                                'FAQs',
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(Faq());
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            elevation: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Image.asset(
+                                  'assets/dashboard/FAQ.jpeg',
+                                  height: 128,
+                                ),
+                                Text(
+                                  'FAQs',
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ],
