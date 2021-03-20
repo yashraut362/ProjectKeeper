@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
 import 'package:path/path.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Addproject extends StatefulWidget {
   @override
@@ -16,16 +17,28 @@ class _AddprojectState extends State<Addproject> {
     String name = "";
     String details = "";
     String domain = "";
-    String imageurl = "";
+    String picture = "";
     String filename = "";
+    String contact = "";
     File image;
     final picker = ImagePicker();
-
     final _formKey = GlobalKey<FormState>();
     FocusNode _namefn = FocusNode();
     FocusNode _detailsfn = FocusNode();
     FocusNode _commentFocusNode = FocusNode();
     FocusNode _contact = FocusNode();
+
+    final _firestore = Firestore.instance;
+
+    void uploadform() async {
+      _firestore.collection('allprojects').add({
+        'name': name,
+        'details': details,
+        'domain': domain,
+        'contact': contact,
+        'imageurl': picture,
+      });
+    }
 
     Future<String> uploadImage() async {
       StorageReference ref = FirebaseStorage.instance.ref().child(filename);
@@ -33,9 +46,9 @@ class _AddprojectState extends State<Addproject> {
 
       var downUrl = await (await uploadTask.onComplete).ref.getDownloadURL();
       var url = downUrl.toString();
-      setState(() {
-        imageurl = url;
-      });
+      picture = url;
+      print(picture);
+      uploadform();
     }
 
     Future _getImage() async {
@@ -62,23 +75,6 @@ class _AddprojectState extends State<Addproject> {
                 child: Column(
                   children: [
                     Image.asset('assets/splashscreen/form.png'),
-                    RaisedButton.icon(
-                      color: Theme.of(context).primaryColor,
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0),
-                      ),
-                      onPressed: () {
-                        _getImage();
-                      },
-                      icon: Icon(
-                        Icons.image,
-                        color: Colors.white,
-                      ),
-                      label: Text(
-                        'Upload Image',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
                     DropDown(
                         items: [
                           "Mobile Application Development",
@@ -158,7 +154,7 @@ class _AddprojectState extends State<Addproject> {
                           focusNode: _commentFocusNode,
                           // autofocus: true,
                           textCapitalization: TextCapitalization.words,
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                             labelText: "Contact Detail",
                             hintText: "Preferably whatsapp number",
@@ -179,20 +175,22 @@ class _AddprojectState extends State<Addproject> {
                             }
                             return null;
                           },
-                          onChanged: (value) => {}),
+                          onChanged: (value) => {contact = value}),
                     ),
-                    RaisedButton(
+                    RaisedButton.icon(
+                      color: Theme.of(context).primaryColor,
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0),
                       ),
-                      color: Theme.of(context).primaryColor,
-                      onPressed: () async {
-                        print(name);
-                        print(domain);
-                        print(details);
+                      onPressed: () {
+                        _getImage();
                       },
-                      child: Text(
-                        "Submit",
+                      icon: Icon(
+                        Icons.image,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        'Upload Image and Submit',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),

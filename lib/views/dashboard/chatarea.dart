@@ -8,6 +8,12 @@ class Chatarea extends StatefulWidget {
 class _ChatareaState extends State<Chatarea> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: Text('Hello'),
+        ),
+      ),
+    );
   }
 }
