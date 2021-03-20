@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:projectskeeper/views/dashboard/search.dart';
 import '../dashboard/Faq.dart';
 import '../dashboard/addproject.dart';
 import '../dashboard/allprojects.dart';
@@ -177,7 +178,7 @@ class _HomepageState extends State<Homepage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(Faq());
+                          Get.to(Search());
                         },
                         child: Card(
                           shape: RoundedRectangleBorder(
