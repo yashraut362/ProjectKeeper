@@ -3,6 +3,7 @@ import 'package:flutter_dropdown/flutter_dropdown.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:projectskeeper/views/utility/bottomnavbar.dart';
 import 'package:projectskeeper/views/utility/homepage.dart';
 
 class Mentors extends StatefulWidget {
@@ -42,12 +43,16 @@ class _MentorsState extends State<Mentors> {
       'contact': contact,
       'lat': _currentPosion.latitude,
       'long': _currentPosion.longitude
-    }).then((value) => Get.to(Homepage()));
+    }).then((value) => Get.to(BottomNavBar()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Become a Mentor"),
+      ),
       body: ListView(
         children: [
           Form(
