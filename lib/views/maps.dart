@@ -14,11 +14,13 @@ class _MapsState extends State<Maps> {
     myController = controller;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Look for Nearby Mentor"),
+      ),
       body: Stack(
         children: <Widget>[
           GoogleMap(
@@ -26,18 +28,6 @@ class _MapsState extends State<Maps> {
             initialCameraPosition: CameraPosition(
               target: _center,
               zoom: 10.0,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: FloatingActionButton(
-                onPressed: () => print('You have pressed the button'),
-                materialTapTargetSize: MaterialTapTargetSize.padded,
-                backgroundColor: Colors.green,
-                child: const Icon(Icons.map, size: 30.0),
-              ),
             ),
           ),
         ],
