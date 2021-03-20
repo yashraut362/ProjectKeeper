@@ -69,6 +69,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_dropdown:
+    dependency: "direct main"
+    description:
+      name: flutter_dropdown
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.8"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -94,7 +101,7 @@ packages:
     source: hosted
     version: "3.26.0"
   google_maps_flutter:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_maps_flutter
       url: "https://pub.dartlang.org"
