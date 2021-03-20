@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
       getPages: Routers.route,
       initialRoute: '/splashscreen',
       theme: ThemeData(
-        primaryColor: Color(0xffFFE30A),
+        primaryColor: Color(0xffe84545),
+        accentColor: Color(0xff191919),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
     );

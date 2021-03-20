@@ -1,6 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:projectskeeper/views/homepage.dart';
 import 'package:projectskeeper/views/learn.dart';
 import 'package:projectskeeper/views/maps.dart';
@@ -34,7 +33,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavyBarItem(
             icon: Icon(
               Icons.map,
-              color: Colors.black,
+              color: Theme.of(context).primaryColor,
               size: size.width * 0.07,
             ),
             title: Text(
@@ -42,16 +41,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
               style: TextStyle(
                   fontSize: size.width * 0.05,
                   fontFamily: "Montserrat",
-                  color: Colors.black,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w700),
             ),
-            activeColor: Color(0xffFFE30A),
+            activeColor: Theme.of(context).accentColor,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
             icon: Icon(
               Icons.home_filled,
-              color: Colors.black,
+              color: Theme.of(context).primaryColor,
               size: size.width * 0.07,
             ),
             title: Text(
@@ -59,16 +58,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
               style: TextStyle(
                   fontSize: size.width * 0.05,
                   fontFamily: "Montserrat",
-                  color: Colors.black,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w700),
             ),
-            activeColor: Color(0xffFFE30A),
+            activeColor: Theme.of(context).accentColor,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
             icon: Icon(
               Icons.supervised_user_circle_rounded,
-              color: Colors.black,
+              color: Theme.of(context).primaryColor,
               size: size.width * 0.07,
             ),
             title: Text(
@@ -76,10 +75,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
               style: TextStyle(
                   fontSize: size.width * 0.05,
                   fontFamily: "Montserrat",
-                  color: Colors.black,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w700),
             ),
-            activeColor: Color(0xffFFE30A),
+            activeColor: Theme.of(context).accentColor,
             textAlign: TextAlign.center,
           ),
         ],

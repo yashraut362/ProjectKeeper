@@ -7,7 +7,7 @@ class Splashscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SplashScreen(
       useLoader: true,
-      loaderColor: Colors.white,
+      loaderColor: Theme.of(context).primaryColor,
       loadingText: Text(
         'Please Wait...',
         style: new TextStyle(
@@ -16,7 +16,7 @@ class Splashscreen extends StatelessWidget {
           fontSize: 25.0,
         ),
       ),
-      seconds: 03,
+      seconds: 01,
       navigateAfterSeconds: new BottomNavBar(),
       title: new Text(
         'Project Keeper',
@@ -29,7 +29,7 @@ class Splashscreen extends StatelessWidget {
         maxLines: 2,
       ),
       image: new Image.asset("assets/splashscreen/logo.png"),
-      backgroundColor: Color(0xff191919),
+      backgroundColor: Theme.of(context).accentColor,
       styleTextUnderTheLoader: new TextStyle(),
       photoSize: 100.0,
     );
