@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProjectDetails extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class ProjectDetails extends StatefulWidget {
 class _ProjectDetailsState extends State<ProjectDetails> {
   @override
   Widget build(BuildContext context) {
+    var data = Get.arguments;
     return Scaffold(
       body: DefaultTabController(
         length: 2,
@@ -20,13 +22,13 @@ class _ProjectDetailsState extends State<ProjectDetails> {
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
                     centerTitle: true,
-                    title: Text("Collapsing Toolbar",
+                    title: Text(data['name'],
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
                         )),
                     background: Image.network(
-                      "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350",
+                      data['imageurl'],
                       fit: BoxFit.cover,
                     )),
               ),
@@ -36,8 +38,8 @@ class _ProjectDetailsState extends State<ProjectDetails> {
                     labelColor: Colors.black87,
                     unselectedLabelColor: Colors.grey,
                     tabs: [
-                      Tab(icon: Icon(Icons.info), text: "Tab 1"),
-                      Tab(icon: Icon(Icons.lightbulb_outline), text: "Tab 2"),
+                      Tab(icon: Icon(Icons.info), text: "Information"),
+                      Tab(icon: Icon(Icons.contact_page), text: "Contact"),
                     ],
                   ),
                 ),
@@ -45,8 +47,18 @@ class _ProjectDetailsState extends State<ProjectDetails> {
               ),
             ];
           },
-          body: Center(
-            child: Text("Sample text"),
+          body: Column(
+            children: [
+              Center(
+                child: Text(data['name']),
+              ),
+              Center(
+                child: Text(data['domain']),
+              ),
+              Center(
+                child: Text(data['details']),
+              ),
+            ],
           ),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:projectskeeper/views/projects/projectdetails.dart';
 
 class Allprojects extends StatelessWidget {
   @override
@@ -34,13 +35,18 @@ class Allprojects extends StatelessWidget {
                     return ListView(
                         children: documents
                             .map(
-                              (doc) => Card(
-                                child: ListTile(
-                                  leading: FlutterLogo(size: 72.0),
-                                  title: Text('Name ' + doc['name']),
-                                  subtitle: Text('Domain' + doc['name']),
-                                  trailing: Icon(Icons.verified),
-                                  isThreeLine: true,
+                              (doc) => GestureDetector(
+                                onTap: () {
+                                  Get.to(ProjectDetails(), arguments: doc);
+                                },
+                                child: Card(
+                                  child: ListTile(
+                                    leading: FlutterLogo(size: 72.0),
+                                    title: Text('Name ' + doc['name']),
+                                    subtitle: Text('Domain' + doc['name']),
+                                    trailing: Icon(Icons.verified),
+                                    isThreeLine: true,
+                                  ),
                                 ),
                               ),
                             )
