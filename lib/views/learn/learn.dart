@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../projects/forms.dart';
-import '../projects/projectdetails.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/svg.dart';
 
 class Learn extends StatefulWidget {
   @override
@@ -40,13 +35,6 @@ class _LearnState extends State<Learn> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 32,
-                          backgroundImage: AssetImage("assets/learn/learn.png"),
-                        ),
-                        SizedBox(
-                          width: 16,
-                        ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,

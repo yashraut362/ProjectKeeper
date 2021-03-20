@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
-import 'package:get/get.dart';
+import 'package:path/path.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Addproject extends StatefulWidget {
   @override
@@ -11,15 +13,40 @@ class Addproject extends StatefulWidget {
 class _AddprojectState extends State<Addproject> {
   @override
   Widget build(BuildContext context) {
+    String name = "";
+    String details = "";
+    String domain = "";
+    String imageurl = "";
+    String filename = "";
+    File image;
+    final picker = ImagePicker();
+
     final _formKey = GlobalKey<FormState>();
     FocusNode _namefn = FocusNode();
     FocusNode _detailsfn = FocusNode();
     FocusNode _commentFocusNode = FocusNode();
+    FocusNode _contact = FocusNode();
 
-    String name = "";
-    String details = "";
-    String domain = "";
-    File image;
+    Future<String> uploadImage() async {
+      StorageReference ref = FirebaseStorage.instance.ref().child(filename);
+      StorageUploadTask uploadTask = ref.putFile(image);
+
+      var downUrl = await (await uploadTask.onComplete).ref.getDownloadURL();
+      var url = downUrl.toString();
+      setState(() {
+        imageurl = url;
+      });
+    }
+
+    Future _getImage() async {
+      var selectedImage =
+          await ImagePicker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        image = selectedImage;
+        filename = basename(image.path);
+      });
+      uploadImage();
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -35,13 +62,14 @@ class _AddprojectState extends State<Addproject> {
                 child: Column(
                   children: [
                     Image.asset('assets/splashscreen/form.png'),
-
                     RaisedButton.icon(
                       color: Theme.of(context).primaryColor,
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _getImage();
+                      },
                       icon: Icon(
                         Icons.image,
                         color: Colors.white,
@@ -124,7 +152,6 @@ class _AddprojectState extends State<Addproject> {
                           },
                           onChanged: (value) => {details = value}),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                       child: TextFormField(
@@ -133,8 +160,8 @@ class _AddprojectState extends State<Addproject> {
                           textCapitalization: TextCapitalization.words,
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
-                            labelText: "Comment",
-                            hintText: "Comment about pothole",
+                            labelText: "Contact Detail",
+                            hintText: "Preferably whatsapp number",
                             border: new OutlineInputBorder(
                               borderRadius: const BorderRadius.all(
                                 const Radius.circular(8.0),
@@ -146,30 +173,14 @@ class _AddprojectState extends State<Addproject> {
                             ),
                           ),
                           textInputAction: TextInputAction.next,
-                          validator: (comment) {
-                            if (comment.isEmpty) {
+                          validator: (contact) {
+                            if (contact.isEmpty) {
                               return 'Comment is Required';
                             }
                             return null;
                           },
                           onChanged: (value) => {}),
                     ),
-
-                    // DropDown(items: [
-                    //   'Village Council (Gram Panchayat)',
-                    //   'City Council (Nagarparishad)',
-                    //   'Municipality (Nagarpalika)',
-                    //   'Metropolitan(Mahaanagar-Paalika)',
-                    //   'Private authority',
-                    //   'Public Works Department (PWD)',
-                    //   'District council (Zila Panchayat)',
-                    //   'State Government',
-                    //   'Central Government ',
-                    //   'Others',
-                    // ], hint: Text('Departments'), onChanged: (value) => {}),
-                    // SizedBox(
-                    //   height: 20.0,
-                    // ),
                     RaisedButton(
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0),

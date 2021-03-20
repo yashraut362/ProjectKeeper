@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
+
+import 'package:geolocator/geolocator.dart';
 
 class Maps extends StatefulWidget {
   @override
@@ -9,17 +12,25 @@ class Maps extends StatefulWidget {
 
 class _MapsState extends State<Maps> {
   GoogleMapController myController;
-  LatLng _initialcameraposition = LatLng(20.5937, 78.9629);
-  Location _location = Location();
+  static LatLng _lastMapPosition = _initialPosition;
+  static LatLng _initialPosition;
+  Completer<GoogleMapController> _controller = Completer();
+  Position position;
 
-  void _onMapCreated(GoogleMapController controller) {
-    myController = controller;
-    _location.onLocationChanged.listen((l) {
-      myController.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(target: LatLng(l.latitude, l.longitude), zoom: 15),
-        ),
-      );
+  @override
+  void initState() {
+    super.initState();
+    _getUserLocation();
+  }
+
+  void _getUserLocation() async {
+    Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    List<Placemark> placemark = await Geolocator()
+        .placemarkFromCoordinates(position.latitude, position.longitude);
+    setState(() {
+      _initialPosition = LatLng(position.latitude, position.longitude);
+      // print('${placemark[0].name}');
     });
   }
 
@@ -33,10 +44,14 @@ class _MapsState extends State<Maps> {
       body: Stack(
         children: <Widget>[
           GoogleMap(
-            onMapCreated: _onMapCreated,
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+            },
             myLocationEnabled: true,
-            initialCameraPosition:
-                CameraPosition(target: _initialcameraposition, zoom: 12),
+            initialCameraPosition: CameraPosition(
+              target: _initialPosition,
+              zoom: 14.4746,
+            ),
           ),
         ],
       ),
