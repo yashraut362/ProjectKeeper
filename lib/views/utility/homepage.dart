@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import '../dashboard/Faq.dart';
-import '../dashboard/addproject/addproject.dart';
+import '../dashboard/addproject.dart';
 import '../dashboard/allprojects.dart';
 import '../dashboard/chatarea.dart';
 import '../dashboard/mentor.dart';
