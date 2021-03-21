@@ -2,9 +2,11 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
+import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:projectskeeper/views/utility/bottomnavbar.dart';
 
 class Addproject extends StatefulWidget {
   @override
@@ -37,7 +39,7 @@ class _AddprojectState extends State<Addproject> {
         'domain': domain,
         'contact': contact,
         'imageurl': picture,
-      });
+      }).then((value) => Get.to(BottomNavBar()));
     }
 
     Future<String> uploadImage() async {
