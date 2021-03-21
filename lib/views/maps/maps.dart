@@ -90,7 +90,7 @@ class _MapsState extends State<Maps> {
       Marker(
         markerId: MarkerId("home"),
         position: LatLng(position.latitude, position.longitude),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
       ),
     ].toSet();
   }
@@ -129,7 +129,7 @@ class _MapsState extends State<Maps> {
       appBar: AppBar(
         title: Text(
           "Map",
-          style: TextStyle(color: Colors.amber),
+          style: TextStyle(color: Theme.of(context).primaryColor),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -147,19 +147,20 @@ class _MapsState extends State<Maps> {
                   ),
                   Text(
                     'Loading...',
-                    style: TextStyle(color: Colors.amber),
+                    style: TextStyle(color: Theme.of(context).primaryColor),
                   ),
                   SizedBox(
                     height: 50.0,
                   ),
                   Text(
                     'In case its kept on loading ',
-                    style: TextStyle(color: Colors.amber, fontSize: 20.0),
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor, fontSize: 20.0),
                   ),
                   Text(
                     'Please Enable Location',
                     style: TextStyle(
-                        color: Colors.amber,
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0),
                   ),
@@ -189,8 +190,11 @@ class _MapsState extends State<Maps> {
                       margin: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
                       child: Column(
                         children: <Widget>[
-                          mapButton(_onMapTypeButtonPressed,
-                              Icon(Icons.filter_hdr), Colors.amber),
+                          mapButton(
+                            _onMapTypeButtonPressed,
+                            Icon(Icons.filter_hdr),
+                            Theme.of(context).primaryColor,
+                          ),
                         ],
                       ),
                     ),

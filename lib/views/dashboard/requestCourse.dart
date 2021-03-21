@@ -39,7 +39,7 @@ class _RequestCourseState extends State<RequestCourse> {
               key: _formKey,
               child: Column(
                 children: [
-                  Image.asset('assets/splashscreen/form.png'),
+                  Image.asset('assets/form/req.png'),
                   DropDown(
                       items: [
                         "Mobile Application Development",
