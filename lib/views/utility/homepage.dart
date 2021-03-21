@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:projectskeeper/views/dashboard/search.dart';
+import 'package:projectskeeper/views/learn/Videolist.dart';
 import '../dashboard/Faq.dart';
 import '../dashboard/addproject.dart';
 import '../dashboard/allprojects.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:projectskeeper/views/learn/Videolist.dart';
 
 class Learn extends StatefulWidget {
   @override
@@ -60,92 +61,124 @@ class _LearnState extends State<Learn> {
                         primary: false,
                         crossAxisCount: 2,
                         children: <Widget>[
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            elevation: 4,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Image.asset('assets/learn/app.png',
-                                    height: 128),
-                                Text(
-                                  'App Develpoment',
-                                )
-                              ],
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(Video());
+                            },
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              elevation: 4,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset('assets/learn/app.png',
+                                      height: 128),
+                                  Text(
+                                    'App Develpoment',
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            elevation: 4,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Image.asset('assets/learn/web.png',
-                                    height: 128),
-                                Text(
-                                  'Web Develpoment',
-                                )
-                              ],
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(Video());
+                            },
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              elevation: 4,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset('assets/learn/web.png',
+                                      height: 128),
+                                  Text(
+                                    'Web Develpoment',
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            elevation: 4,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Image.asset('assets/learn/ai.png', height: 128),
-                                Text(
-                                  'Artificial Intelligence',
-                                )
-                              ],
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(Video());
+                            },
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              elevation: 4,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset('assets/learn/ai.png',
+                                      height: 128),
+                                  Text(
+                                    'Artificial Intelligence',
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            elevation: 4,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Image.asset('assets/learn/ml.png', height: 128),
-                                Text(
-                                  'Machine Learning',
-                                )
-                              ],
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(Video());
+                            },
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              elevation: 4,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset('assets/learn/ml.png',
+                                      height: 128),
+                                  Text(
+                                    'Machine Learning',
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            elevation: 4,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Image.asset('assets/learn/iot.png',
-                                    height: 128),
-                                Text(
-                                  'Internet Of Things',
-                                )
-                              ],
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(Video());
+                            },
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              elevation: 4,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset('assets/learn/iot.png',
+                                      height: 128),
+                                  Text(
+                                    'Internet Of Things',
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            elevation: 4,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Image.asset('assets/learn/blockchain.png',
-                                    height: 128),
-                                Text(
-                                  'Blockchain',
-                                )
-                              ],
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(Video());
+                            },
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              elevation: 4,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset('assets/learn/blockchain.png',
+                                      height: 128),
+                                  Text(
+                                    'Blockchain',
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ],
