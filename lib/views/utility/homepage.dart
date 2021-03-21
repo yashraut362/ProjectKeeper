@@ -193,7 +193,7 @@ class _HomepageState extends State<Homepage> {
                                   height: 128,
                                 ),
                                 Text(
-                                  'FAQs',
+                                  'Search For Project',
                                 )
                               ],
                             ),
