@@ -153,7 +153,7 @@ class _MapsState extends State<Maps> {
                     height: 50.0,
                   ),
                   Text(
-                    'In case its kept on loading ',
+                    'In case its kept on loading',
                     style: TextStyle(
                         color: Theme.of(context).primaryColor, fontSize: 20.0),
                   ),
