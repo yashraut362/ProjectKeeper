@@ -16,7 +16,7 @@ class Splashscreen extends StatelessWidget {
           fontSize: 25.0,
         ),
       ),
-      seconds: 01,
+      seconds: 05,
       navigateAfterSeconds: new BottomNavBar(),
       title: new Text(
         'Project Keeper',

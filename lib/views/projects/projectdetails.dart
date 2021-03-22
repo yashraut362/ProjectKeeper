@@ -45,8 +45,7 @@ class _ProjectDetailsState extends State<ProjectDetails> {
             ),
           ];
         },
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: ListView(
           children: [
             Container(
               child: Padding(
@@ -89,7 +88,7 @@ class _ProjectDetailsState extends State<ProjectDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "Project Name:",
+                      "Project Domain:",
                       style: TextStyle(
                           color: Colors.redAccent,
                           fontStyle: FontStyle.normal,
@@ -175,9 +174,6 @@ class _ProjectDetailsState extends State<ProjectDetails> {
                   ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20.0,
             ),
             Center(
               child: Container(
