@@ -1,17 +1,16 @@
-# projectskeeper
 
-A new Flutter application.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 # ProjectKeeper
+
+## Snapshot of Application
+
+
+
+
+
+
+## Features
+
+- Get Project idea: students can search for their project idea in the search box and searched results will appear, this will give them earlier project ideas MATCHING WITH THEIR KEYWORDS as output of searching and students can add their project idea as well.
+- Mentor Section: Mentor can register themself on this application and share their locations for the students.
+- Courses : Free courses are available for students.
+- Chat : Chat feature is available for learners, they can ask question and others can answer or solve their queries for the same.
